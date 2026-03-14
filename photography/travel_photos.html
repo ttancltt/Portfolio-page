@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TRUONG Thien An - Du lịch & Nhiếp ảnh</title>
+  
+  <!-- Lightbox CSS -->
+  <link href="lightbox/css/lightbox.min.css" rel="stylesheet" />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #f8f9fa;
+      color: #222;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 32px;
+      color: #0077cc;
+    }
+
+    .back-button {
+      background-color: #555;
+      color: white;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-bottom: 30px;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .back-button:hover {
+      background-color: #333;
+    }
+
+    .pinned-photos {
+      margin-top: 40px;
+      margin-bottom: 60px;
+      padding-bottom: 30px;
+      border-bottom: 2px solid #ddd;
+    }
+
+    .pinned-photos h2 {
+      font-size: 26px;
+      color: #333;
+      margin-bottom: 25px;
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .pinned-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .pinned-grid img {
+      width: 100%;
+      /* height: auto;  Ảnh sẽ giữ tỷ lệ khung hình gốc */
+      max-height: 250px; /* Có thể đặt chiều cao tối đa nếu muốn kiểm soát một chút */
+      object-fit: cover; /* Vẫn giữ object-fit để ảnh trông đẹp trong lưới */
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      cursor: pointer; /* Để gợi ý có thể nhấp vào */
+    }
+
+    .pinned-grid img:hover {
+      transform: scale(1.03);
+    }
+
+    .location-section {
+      margin-top: 50px;
+      text-align: left;
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      border: 1px solid #eee;
+    }
+
+    .location-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .location-header h2 {
+      margin: 0;
+      font-size: 24px;
+      color: #0077cc;
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .toggle-button {
+      background-color: #eee;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+      color: #555;
+    }
+
+    .toggle-button:hover {
+      background-color: #ddd;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.7s ease-out;
+    }
+
+    .photo-grid.expanded {
+      max-height: 2000px; /* Điều chỉnh để phù hợp với số lượng ảnh */
+      transition: max-height 1.0s ease-in;
+    }
+
+    .photo-grid img {
+      width: 100%;
+      /* height: auto; */ /* Ảnh sẽ giữ tỷ lệ khung hình gốc */
+      max-height: 200px; /* Có thể đặt chiều cao tối đa */
+      object-fit: cover; /* Vẫn giữ object-fit để ảnh trông đẹp trong lưới */
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease;
+      cursor: pointer; /* Để gợi ý có thể nhấp vào */
+    }
+
+    .photo-grid img:hover {
+      transform: scale(1.03);
+    }
+
+    footer {
+      margin-top: 60px;
+      font-size: 14px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-button">← Retourner à Portfolio</a>
+    <h1>Voyages et Photography</h1>
+
+    <div class="pinned-photos">
+      <h2>Photos à la Une</h2>
+      <div class="pinned-grid">
+        <!-- Đối với ảnh ghim, thêm data-lightbox và data-title -->
+        <a href="10.jpg" data-lightbox="pinned-gallery" data-title="Ảnh số 10 - Mô tả ngắn gọn nếu có">
+          <img src="10.jpg" alt="Pinned Photo 1">
+        </a>
+        <a href="12.JPG" data-lightbox="pinned-gallery" data-title="Ảnh số 12 - Mô tả ngắn gọn nếu có">
+          <img src="12.JPG" alt="Pinned Photo 2">
+        </a>
+        <a href="17.JPG" data-lightbox="pinned-gallery" data-title="Ảnh số 17 - Mô tả ngắn gọn nếu có">
+          <img src="17.JPG" alt="Pinned Photo 3">
+        </a>
+        
+        </a>
+        <!-- Thêm nhiều ảnh ghim nếu cần, mỗi ảnh nằm trong một thẻ <a> -->
+      </div>
+    </div>
+
+    <!-- Phần cho Địa điểm 1 -->
+    <div class="location-section">
+      <div class="location-header" onclick="togglePhotos('Tà Nùng, Việt Nam')">
+        <h2>Tà Nùng, Việt Nam</h2>
+        <button class="toggle-button">▼</button>
+      </div>
+      <div id="Tà Nùng, Việt Nam" class="photo-grid">
+        <!-- Thay thế bằng ảnh du lịch của bạn ở Paris -->
+        <!-- Mỗi ảnh cần nằm trong một thẻ <a> với data-lightbox và data-title -->
+          <a href="0.jpg" data-lightbox="Tà Nùng" data-title="-">
+          <img src="0.jpg" alt="-">
+        </a>
+        <a href="1.jpg" data-lightbox="Tà Nùng" data-title="-">
+          <img src="1.jpg" alt="-">
+        </a>
+        <a href="2.jpg" data-lightbox="Tà Nùng" data-title="-">
+          <img src="2.jpg" alt="-">
+        </a>
+        <a href="3.jpg" data-lightbox="Tà Nùng" data-title="-">
+          <img src="3.jpg" alt="-">
+        </a>
+        <a href="4.jpg" data-lightbox="Tà Nùng" data-title="-">
+          <img src="4.jpg" alt="-">
+        </a>
+        <a href="5.jpg" data-lightbox="Tà Nùng" data-title="-">
+          <img src="5.jpg" alt="-">
+        </a>
+        <!-- Thêm nhiều ảnh hơn cho Paris -->
+      </div>
+    </div>
+
+    <!-- Phần cho Địa điểm 2 -->
+    <div class="location-section">
+      <div class="location-header" onclick="togglePhotos('Dusseldolf, Allemagne')">
+        <h2>Dusseldolf, Allemagne</h2>
+        <button class="toggle-button">▼</button>
+      </div>
+      <div id="Dusseldolf, Allemagne" class="photo-grid">
+        <!-- Thay thế bằng ảnh du lịch của bạn ở Hà Nội -->
+        <a href="6.jpg" data-lightbox="Dusseldolf" data-title="-">
+          <img src="6.jpg" alt="-">
+        </a>
+        <a href="7.jpg" data-lightbox="Dusseldolf" data-title="-">
+          <img src="7.jpg" alt="-">
+        </a>
+        <a href="8.jpg" data-lightbox="Dusseldolf" data-title="-">
+          <img src="8.jpg" alt="-">
+        </a>
+        <a href="9.jpg" data-lightbox="Dusseldolf" data-title="-">
+          <img src="9.jpg" alt="-">
+        </a>
+        <a href="10.JPG" data-lightbox="Dusseldolf" data-title="-">
+          <img src="10.JPG" alt="-">
+        </a>
+        <!-- Thêm nhiều ảnh hơn cho Hà Nội -->
+      </div>
+    </div>
+    
+    <!-- Phần cho Địa điểm 3 -->
+    <div class="location-section">
+      <div class="location-header" onclick="togglePhotos('Budapest')">
+        <h2>Budapest</h2>
+        <button class="toggle-button">▼</button>
+      </div>
+      <div id="Budapest" class="photo-grid">
+        <!-- Thay thế bằng ảnh du lịch của bạn ở Hà Nội -->
+        <a href="16.jpg" data-lightbox="Budapest" data-title="-">
+          <img src="16.jpg" alt="-">
+        </a>
+        <a href="17.jpg" data-lightbox="Budapest" data-title="-">
+          <img src="17.jpg" alt="-">
+        </a>
+        <a href="18.jpg" data-lightbox="Budapest" data-title="-">
+          <img src="18.jpg" alt="-">
+        </a>
+        <!-- Thêm nhiều ảnh hơn cho Hà Nội -->
+      </div>
+    </div>
+
+    <!-- Phần cho Địa điểm 4 -->
+    <div class="location-section">
+      <div class="location-header" onclick="togglePhotos('Arcachon')">
+        <h2>Arcachon</h2>
+        <button class="toggle-button">▼</button>
+      </div>
+      <div id="Arcachon" class="photo-grid">
+        <!-- Thay thế bằng ảnh du lịch của bạn ở Hà Nội -->
+        <a href="19.jpg" data-lightbox="Arcachon" data-title="-">
+          <img src="19.jpg" alt="-">
+        </a>
+      
+        <!-- Thêm nhiều ảnh hơn cho Hà Nội -->
+      </div>
+    </div>
+    
+
+
+    <footer>
+      © 2026 TRUONG Thien An. All Rights Reserved.
+    </footer>
+  </div>
+
+  <!-- jQuery và Lightbox JS -->
+  <script src="lightbox/js/jquery-3.6.0.min.js"></script> <!-- Đảm bảo phiên bản jQuery của bạn -->
+  <script src="lightbox/js/lightbox.min.js"></script>
+
+  <script>
+    // Cấu hình Lightbox nếu cần
+    lightbox.option({
+      'resizeDuration': 200,
+      'wrapAround': true
+    });
+
+    function togglePhotos(id) {
+      const photoGrid = document.getElementById(id);
+      const button = photoGrid.previousElementSibling.querySelector('.toggle-button');
+
+      if (photoGrid.classList.contains('expanded')) {
+        photoGrid.classList.remove('expanded');
+        button.textContent = '▼';
+      } else {
+        photoGrid.classList.add('expanded');
+        button.textContent = '▲';
+      }
+    }
+  </script>
+</body>
+</html>
